@@ -130,7 +130,26 @@ FetchContent_MakeAvailable(googletest)
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES})
+add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
+        include/Carte.h
+        include/Fantasy.h
+        include/Romance.h
+        include/Thriller.h
+        include/Romantasy.h
+        include/Biblioteca.h
+        include/Cititor.h
+        include/CarteException.h
+        src/Carte.cpp
+        src/Fantasy.cpp
+        src/Romance.cpp
+        src/Thriller.cpp
+        src/Romantasy.cpp
+        src/Biblioteca.cpp
+        src/Cititor.cpp
+        src/CarteException.cpp
+        include/StatisticiBiblioteca.h
+        src/StatisticiBiblioteca.cpp
+)
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )
 # NOTE: RUN_SANITIZERS is optional, if it's not present it will default to true
