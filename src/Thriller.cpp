@@ -4,7 +4,7 @@
 #include "Thriller.h"
 
 Thriller::Thriller(const std::string& t, const std::string& a, int an, int nS, bool rM)
-: Carte(t,a,an, "Romance"), nivelSuspans(nS), rezolvareMister(rM){}
+: Carte(t,a,an, "Thriller"), nivelSuspans(nS), rezolvareMister(rM){}
 
 Thriller::Thriller(const Thriller& o):Carte(o),nivelSuspans(o.nivelSuspans),rezolvareMister(o.rezolvareMister){}
 
@@ -20,9 +20,7 @@ Thriller& Thriller::operator=(const Thriller& o) {
 
 Thriller::~Thriller() {}
 
-int Thriller::CalculSuspans() const {
-    return nivelSuspans +
-}
+
 void Thriller::Afisare(std::ostream& out) const {
     out<<"Thriller |"<<titlu<<" - "<<autor<<" ("<<anAparitie<<") "<<"nivel suspans: "<<nivelSuspans<<", rezolvare Mister: "<<rezolvareMister;
 }

@@ -7,9 +7,10 @@
 #include "Fantasy.h"
 #include "Romance.h"
 #include "Thriller.h"
+#include "StatisticiBiblioteca.h"
 
 
-int main() {
+int main(){
     Biblioteca b;
 
     Fantasy* f1=new Fantasy("Calea Regilor", "Brandon Sanderson", 2010, 9, "Roshar");
@@ -26,6 +27,27 @@ int main() {
     b.adaugaCarte(r1);
     b.adaugaCarte(r2);
 
+    StatisticiBiblioteca sb;
+    sb.actualizeaza(b.getCarti());
+    //recomand carte dupa gen
+    std::string genCautat;
+    std::cout<<"Introdu genul de carte preferat: ";
+    std::cin>>genCautat;
+
+    Carte* recomandata = b.recomandaCarte(Cititor(genCautat,0,0)); //creez cartea recomandata bazata pe preferinta cititorului
+    //returneaza un pointer la prima carte pe genul resp sau nullptr daca nu exista
+
+    if (recomandata!=nullptr)
+        std::cout<<"Recomandare: "<< *recomandata<< std::endl;
+    else
+        std::cout<<"Nu avem carti pentru genul "<<genCautat<<std::endl;
+
+
+
+    sb.afiseazaStatistici();
+    std::cout<<"cel mai reprezentat Gen: "<<sb.genCelMaiReprezentat()<<std::endl;
+
+
     std::cout<< f1->rezumatLume() <<std::endl;
     if (t1->eSuspansRidicat(7))
         std::cout<<"Thriller foarte intens"<<std::endl;
@@ -37,4 +59,11 @@ int main() {
         std::cout<<"Cea mai populara carte Thriller: "<<*populara<<std::endl;
 
     b.afiseazaStatistici();
+
+    delete f1;
+    delete f2;
+    delete t1;
+    delete t2;
+    delete r1;
+    delete r2;
 }

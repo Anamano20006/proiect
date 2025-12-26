@@ -1,6 +1,4 @@
-//
-// Created by Envy on 20.12.2025.
-//
+
 #include"Biblioteca.h"
 #include "Romance.h"
 #include "Thriller.h"
@@ -29,7 +27,7 @@ void Biblioteca::sorteazaTitlu() {
     }
 Carte* Biblioteca::recomandaCarte(const Cititor& cititor) const {
     for (int i=0;i<carti.size();i++)
-        if (carti[i]->getgen()==cititor.getGenPreferat())
+        if (carti[i]->getgen()==cititor.preferintaGen())
             return carti[i];
     return nullptr;
     }

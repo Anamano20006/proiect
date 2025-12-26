@@ -1,6 +1,4 @@
-//
-// Created by Envy on 20.12.2025.
-//
+
 
 #ifndef OOP_BIBLIOTECA_H
 #define OOP_BIBLIOTECA_H
@@ -17,6 +15,7 @@ private:
 public:
     Biblioteca();
     ~Biblioteca();
+    std::vector<Carte*> getCarti() const{return carti;}
 
     void adaugaCarte(Carte* c);
     void afiseazaCarte(std::ostream& out) const;
