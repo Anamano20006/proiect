@@ -19,6 +19,8 @@ public:
     void Afisare(std::ostream& out) const;
     int CalculSuspans() const;
     bool eSuspansRidicat(int prag) const;
+    int scorRecomandare(const Cititor& c) const;
+    Carte* clone() const;
 };
 
 

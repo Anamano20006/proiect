@@ -2,7 +2,11 @@
 
 Fantasy::Fantasy(const std::string& t, const std::string& a, int an, int nivel, const std::string& lume):
     Carte(t,a,an,"Fantasy"),nivelAventura(nivel), lumeFictiva(lume){}
+
+
 Fantasy::Fantasy(const Fantasy& o):Carte(o), nivelAventura(o.nivelAventura),lumeFictiva(o.lumeFictiva){}
+
+
 Fantasy& Fantasy::operator=(const Fantasy& o) {
     if (this!=&o) {
         Carte::operator=(o);
@@ -11,7 +15,13 @@ Fantasy& Fantasy::operator=(const Fantasy& o) {
     }
     return *this;
 }
+
+
 Fantasy::~Fantasy() {}
+
+Carte* Fantasy::clone() const {
+    return new Fantasy(*this);
+}
 
 std::string Fantasy::rezumatLume() const {
     std::string text="In cartea ";
@@ -21,6 +31,15 @@ std::string Fantasy::rezumatLume() const {
     text=text+" cu un nivel de aventura ";
     text=text+std::to_string(nivelAventura);
     return text;
+}
+
+int Fantasy::scorRecomandare(const Cititor& c) const {
+    int scor=0;
+    if (c.preferintaGen()=="Fantasy")
+        scor+=5;
+    scor+=nivelAventura;
+    return scor;
+
 }
 
 void Fantasy::Afisare(std::ostream& out) const {

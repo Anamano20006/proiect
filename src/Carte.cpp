@@ -1,15 +1,19 @@
 #include "Carte.h"
-//#include"CarteException.h"
+#include"CarteExceptie.h"
 #include<stdexcept>
-Carte::Carte(): titlu(""), autor(""), anAparitie(0), gen(""){}
+int Carte::nrTotalCarti=0;
+Carte::Carte(): titlu(""), autor(""), anAparitie(0), gen(""){ nrTotalCarti++;}
 Carte::Carte(const std::string& t, const std:: string& a,int an, const std::string& g):
     titlu(t),autor(a),anAparitie(an), gen(g) {
-    /*if (titlu.empty())
-        throw CarteException("Titlu invalid");
+    nrTotalCarti++;
+    if (titlu.empty())
+        throw CarteExceptie("Titlu invalid");
     if (an< 1450)
-        throw CarteException("An de aparitie invalid");*/
+        throw CarteExceptie("An de aparitie invalid");
+
 }
-Carte::Carte(const Carte& o): titlu(o.titlu), autor(o.autor),anAparitie(o.anAparitie), gen(o.gen) {}
+Carte::Carte(const Carte& o): titlu(o.titlu), autor(o.autor),anAparitie(o.anAparitie), gen(o.gen) {
+}
 Carte& Carte::operator=(const Carte& o) {
     if (this != &o) {
         titlu=o.titlu;
@@ -22,7 +26,9 @@ Carte& Carte::operator=(const Carte& o) {
 std::string Carte::getgen()const {
     return gen;
 }
-Carte::~Carte()=default;
+Carte::~Carte() {
+    nrTotalCarti--;
+}
 
 bool Carte::operator<(const Carte& o) const {
     return titlu<o.titlu;

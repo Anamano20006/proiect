@@ -24,7 +24,22 @@ bool Romance::temaPozitiva() const {
     return false;
 }
 
+int Romance::scorRecomandare(const Cititor&  c) const {
+    int scor=0;
+    if (c.preferintaGen()=="Romance")
+        scor+=5;
+    scor+=impactEmotional;
+    return scor;
+
+}
+
 void Romance::Afisare(std::ostream& out) const {
     out<<"Romance |"<<titlu<<" - "<<autor<<" ("<<anAparitie<<") "<<"impact Emotional: "<<impactEmotional<<", tema Morala: "<<temaMorala;
 }
+
+
+Carte* Romance::clone() const {
+    return new Romance(*this);
+}
+
 

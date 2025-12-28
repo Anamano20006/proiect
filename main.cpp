@@ -8,10 +8,19 @@
 #include "Romance.h"
 #include "Thriller.h"
 #include "StatisticiBiblioteca.h"
+#include"ScienceFiction.h"
+
+#include "BibliotecaExceptie.h"
+#include "CarteExceptie.h"
+#include "CititorExceptie.h"
 
 
-int main(){
+int main() {
+
+
+    try {
     Biblioteca b;
+
 
     Fantasy* f1=new Fantasy("Calea Regilor", "Brandon Sanderson", 2010, 9, "Roshar");
     Fantasy* f2=new Fantasy("Throne Of Glass", "Sarah J. Maas", 2012, 8, "Erilea" );
@@ -19,6 +28,8 @@ int main(){
     Thriller* t2=new Thriller("The Silent Patient", "Alex Michaelides", 2019, 9, true);
     Romance* r1=new Romance ("Me Before You", "Jojo Moyes", 2012, 9, "iubire");
     Romance* r2= new Romance("The Notebook", "Nicholas Parks", 1996,8, "iertare");
+    ScienceFiction* sf1=new ScienceFiction ("Dune", "Frank Herbert", 1965,9);
+    ScienceFiction* sf2=new ScienceFiction ("The 100", "Kass Morgan", 2013, 7);
 
     b.adaugaCarte(f1);
     b.adaugaCarte(f2);
@@ -26,9 +37,19 @@ int main(){
     b.adaugaCarte(t2);
     b.adaugaCarte(r1);
     b.adaugaCarte(r2);
+    b.adaugaCarte(sf1);
+    b.adaugaCarte(sf2);
+
+    std::cout<<"Numar total de carti: "<<Carte::getnrTotalCarti()<<std::endl;
+    int scor=Biblioteca::scorStandard(5);
+    std::cout<<"Scor standard pentru nivel 5:"<< scor<<std::endl;
+
+
 
     StatisticiBiblioteca sb;
     sb.actualizeaza(b.getCarti());
+
+
     //recomand carte dupa gen
     std::string genCautat;
     std::cout<<"Introdu genul de carte preferat: ";
@@ -54,11 +75,23 @@ int main(){
     if (r1->temaPozitiva())
         std::cout<<"Romance cu tema pozitiva"<<std::endl;
 
+    //cea mai populara carte pe  gen
     Carte* populara=b.CeaMaiPopularaPeGen("Thriller");
     if (populara!=nullptr)
         std::cout<<"Cea mai populara carte Thriller: "<<*populara<<std::endl;
 
-    b.afiseazaStatistici();
+
+    try {
+        Cititor c("", -1,5);
+    } catch (const CititorExceptie& e) {
+        std::cout<<"Eroare cititor"<<e.what()<<std::endl;
+    }
+
+    try {
+        Fantasy* f=new Fantasy ("", "Autor", 2020,5,"Lume");
+    } catch (const CarteExceptie& e) {
+        std::cout<<"Eroare carte: "<<e.what()<<std::endl;
+    }
 
     delete f1;
     delete f2;
@@ -66,4 +99,10 @@ int main(){
     delete t2;
     delete r1;
     delete r2;
+    delete sf1;
+    delete sf2;
+} catch (const std::exception& e) {
+    std::cout<<"Exceptie: "<< e.what()<<std::endl;
+}
+    return 0;
 }

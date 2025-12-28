@@ -5,7 +5,7 @@
 #ifndef OOP_FANTASY_H
 #define OOP_FANTASY_H
 #include "Carte.h"
-
+#include "Cititor.h"
 class Fantasy: public Carte {
 private:
     int nivelAventura;
@@ -17,7 +17,11 @@ public:
     Fantasy& operator=(const Fantasy& o);
     ~Fantasy();
 
+    Carte* clone() const;
+    int getnivelAventura() const {return nivelAventura; }
+
     std::string rezumatLume() const;
+    int scorRecomandare (const Cititor& c) const;
 
     void Afisare(std::ostream& out) const;
 

@@ -34,3 +34,17 @@ bool Thriller::eSuspansRidicat(int prag) const {
         return false;
 }
 
+int Thriller::scorRecomandare(const Cititor& c) const {
+    int scor=0;
+    if (c.preferintaGen()=="Thriller")
+        scor+=5;
+    scor+=nivelSuspans;
+    if (rezolvareMister)
+        scor+=2;
+    return scor;
+}
+
+
+Carte* Thriller::clone() const {
+    return new Thriller(*this);
+}

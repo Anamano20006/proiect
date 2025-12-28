@@ -5,7 +5,7 @@
 #ifndef OOP_ROMANCE_H
 #define OOP_ROMANCE_H
 #include "Carte.h"
-
+#include "Cititor.h"
 class Romance: public Carte {
 private:
     int impactEmotional;
@@ -17,8 +17,10 @@ public:
     Romance& operator=(const Romance& o);
 
     bool temaPozitiva() const;
-
+    int scorRecomandare (const Cititor& c) const;
     void Afisare(std::ostream& out) const;
+
+    Carte* clone() const;
 
 };
 
