@@ -14,7 +14,7 @@ protected:
     std::string mesaj;
 public:
     BibliotecaExceptie (const std::string& m):mesaj(m){}
-    const char* what() const noexcept {return mesaj.c_str();}
+    virtual const char* what() const noexcept {return mesaj.c_str();}
 };
 
 

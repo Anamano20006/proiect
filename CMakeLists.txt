@@ -137,14 +137,12 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
         include/Thriller.h
         include/Biblioteca.h
         include/Cititor.h
-        include/CarteException.h
         src/Carte.cpp
         src/Fantasy.cpp
         src/Romance.cpp
         src/Thriller.cpp
         src/Biblioteca.cpp
         src/Cititor.cpp
-        src/CarteException.cpp
         include/StatisticiBiblioteca.h
         src/StatisticiBiblioteca.cpp
         include/BibliotecaExceptie.h
@@ -152,6 +150,11 @@ add_executable(${MAIN_EXECUTABLE_NAME} main.cpp ${SOURCES}
         include/CititorExceptie.h
         include/ScienceFiction.h
         src/ScienceFiction.cpp
+        include/CarteFactory.h
+        include/Recomandari.h
+        include/TemplateUtils.h
+        include/RecomandariPointer.h
+        src/CarteFactory.cpp
 )
 
 # NOTE: Add all defined targets (e.g. executables, libraries, etc. )

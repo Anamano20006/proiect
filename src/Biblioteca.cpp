@@ -4,27 +4,9 @@
 #include "Thriller.h"
 #include "Fantasy.h"
 #include<algorithm>
-Biblioteca::Biblioteca() {
-    for (auto c: carti ) {
-        delete c;
-    }
-}
 
+Biblioteca::Biblioteca(){}
 
-Biblioteca::Biblioteca(const Biblioteca& o) {
-    for (auto c:o.getCarti()) {
-        carti.push_back(c->clone());
-    }
-    statistici.actualizeaza(carti);
-
-}
-
-
-Biblioteca& Biblioteca::operator=(Biblioteca o)
-{
-    swap(o);
-    return *this;
-}
 
 Biblioteca::~Biblioteca() {
     for (auto c:carti)
@@ -33,12 +15,12 @@ Biblioteca::~Biblioteca() {
 
 void Biblioteca::adaugaCarte(Carte* c) {
     carti.push_back(c);
-    statistici.actualizeaza(carti);
+    StatisticiBiblioteca::getInstance().actualizeaza(carti);
 }
 
 
 void Biblioteca::afiseazaStatistici() {
-    statistici.afiseazaStatistici();
+    StatisticiBiblioteca::getInstance().afiseazaStatistici();
 }
 
 
@@ -79,29 +61,30 @@ Carte* Biblioteca::CeaMaiPopularaPeGen(const std::string& gen) const {
         if (c->getgen()==gen) { // verific daca e Thriller, Romance, sau Fantasy
             int scor=1;
 
-            if (Thriller* t=dynamic_cast<Thriller*>(c)) // fac conversie ca sa pot face metode din Thriller
-                if (t != nullptr) { //t=Thriller*
-                    if (t->eSuspansRidicat(5)) {
-                        scor=10;
-                    }
-                    else {
-                        scor=5;
-                    }
+            if (Thriller* t=dynamic_cast<Thriller*>(c)) {
+                // fac conversie ca sa pot face metode din Thriller
+
+                if (t->eSuspansRidicat(5)) {
+                    scor=10;
                 }
-            else if (Romance* r=dynamic_cast<Romance*>(c))
-                if (r!=nullptr) {
-                    if (r->temaPozitiva())
-                        scor=8;
-                    else
-                        scor=4;
+                else {
+                    scor=5;
                 }
-            else if (Fantasy* f=dynamic_cast<Fantasy*>(c))
-                if (f!=nullptr) {
-                    if (f->getnivelAventura()>=7)
-                        scor=9;
-                    else
-                        scor=6;
-                }
+            }
+            else if (Romance* r=dynamic_cast<Romance*>(c)) {
+                if (r->temaPozitiva())
+                    scor=8;
+                else
+                    scor=4;
+            }
+
+            else if (Fantasy* f=dynamic_cast<Fantasy*>(c)) {
+                if (f->getnivelAventura()>=7)
+                    scor=9;
+                else
+                    scor=6;
+            }
+
             if (scor>scorMax) {
                 scorMax=scor;
                 best=c;

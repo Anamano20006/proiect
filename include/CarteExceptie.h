@@ -1,4 +1,4 @@
-
+#include "BibliotecaExceptie.h"
 #ifndef OOP_CARTEEXCEPTIE_H
 #define OOP_CARTEEXCEPTIE_H
 class CarteExceptie: public BibliotecaExceptie {

@@ -1,4 +1,15 @@
-# Nu primesc notă pentru că nu am pus titlu și descriere
+# Biblioteca Interactiva
+## Descriere
+Proiectul implementeaza o biblioteca virtuala care gestioneaza carti
+din mai multe genuri (Fantasy, Romance,Thriller si Science Fiction).
+Aplicatia permite afisarea cartilor, recomandari personalizate pentru 
+cititori, statistici despre biblioteca si identificarea celei mai 
+populare carti pe gen. 
+
+Proiectul este realizat in C++ folosind concepte de programare 
+orientat pe obiect: mostenire, polimorfism, exceptii, template-uri si
+design patterns.
+
 
 ### Folosiți template-ul corespunzător grupei voastre!
 

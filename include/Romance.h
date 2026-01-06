@@ -21,7 +21,6 @@ public:
     void Afisare(std::ostream& out) const;
 
     Carte* clone() const;
-
 };
 
 #endif //OOP_ROMANCE_H

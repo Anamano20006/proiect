@@ -15,7 +15,7 @@ Romance& Romance::operator=(const Romance& o) {
 Romance::~Romance(){}
 
 bool Romance::temaPozitiva() const {
-    if (temaMorala=="iertarea")
+    if (temaMorala=="iertare")
         return true;
     if (temaMorala=="prietenie")
         return true;
