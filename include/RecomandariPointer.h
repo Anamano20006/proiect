@@ -1,0 +1,8 @@
+//
+// Created by Envy on 29.12.2025.
+//
+
+#ifndef OOP_RECOMANDARIPOINTER_H
+#define OOP_RECOMANDARIPOINTER_H
+
+#endif //OOP_RECOMANDARIPOINTER_H
