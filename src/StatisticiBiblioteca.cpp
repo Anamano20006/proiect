@@ -1,6 +1,3 @@
-//
-// Created by Envy on 22.12.2025.
-//
 #include<iostream>
 #include<map>
 #include<string>

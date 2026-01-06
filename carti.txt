@@ -1,8 +1,0 @@
-Fantasy;Calea Regilor;Brandon Sanderson; 2010; 9; Roshar
-Fantasy;Throne Of Glass;Sarah J. Maas; 2012; 8;Erilea
-Thriller;The Naturals;Jennifer Lynn Barnes; 2013; 9;1
-Thriller;The Silent Patient;Alex Michaelides; 2019;9;1
-Romance;Me Before You;Jojo Moyes; 2012;9;iubire
-Romance;The Notebook;Nicholas Parks; 1996;8;iertare
-ScienceFiction;Dune;Frank Herbert; 1965;9
-ScienceFiction;The 100;Kass Morgan;2013; 7

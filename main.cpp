@@ -36,6 +36,9 @@ int main() {
         }
         std::string linie;
         while (std::getline(fin,linie)) {
+
+            if (!linie.empty() && linie.back()=='\r')
+                linie.pop_back();
             std::istringstream iss(linie);
             std::string gen,titlu,autor,extra, anStr,nivelStr,temp;
             int an=0, nivel=0;
@@ -52,13 +55,24 @@ int main() {
 
 
 
-            if (gen=="Fantasy" || gen=="Romance") {
+            if (gen=="Fantasy") {
+                std::getline(iss,extra,';');
+            }
+            else if (gen=="Romance") {
                 std::getline(iss,extra,';');
             }
             else if (gen=="Thriller") {
-                std::getline(iss,extra,';');
+
                 std::getline(iss,temp,';');
-                extraBool=(temp=="1");
+                if (!temp.empty() && temp[0]=='1') {
+                    extraBool=true;
+                }
+                else {
+                    extraBool=false;
+                }
+            }
+            else if (gen=="ScienceFiction") {
+                extra="";
             }
 
             Carte* c=CarteFactory::createCarte(gen,titlu,autor,an,nivel, extra, extraBool);
@@ -67,15 +81,13 @@ int main() {
         }
         fin.close();
 
-        std::cout<<"Toate cartile au fost citite din fisier: "<<std::endl;
-        b.afiseazaCarte(std::cout);
     } catch (const std::exception& e) {
         std::cout<<"A aparut o problema la citire: "<<e.what()<<std::endl;
     }
 
 
 
-    int optiune;
+    int optiune=-1;
     do {
         std::cout<<"===Biblioteca Interactiva==="<<std::endl;
         std::cout<<"1. Afiseaza toate cartile"<<std::endl;
@@ -84,60 +96,59 @@ int main() {
         std::cout<<"4.Cea mai populara carte pe Gen"<<std::endl;
 
         std::cout<<"0.Iesire"<<std::endl;
+        std::cout<<"Alege(0-4): "<<std::endl;
         std::cin>>optiune;
         if (optiune==1) {
             b.afiseazaCarte(std::cout);
         }
         else if (optiune==2) {
-            Cititor c("",0,0);
-            std::cout<<"Introduceti datele cititorului: "<<std::endl;
-            std::cin>>c;
+            try {
 
-            std::string genCautat=c.preferintaGen();
+                std::string genCautat;
+                std::cout<<"Gen Preferat(Fantasy/Romance/Thriller/ScienceFiction): ";
+                std::cin>>genCautat;
 
-
-
-            std::vector<Carte*> cartiGen;
-            for (auto c:b.getCarti()) {
-                if (c->getgen()==genCautat)
-                    cartiGen.push_back(c);
-            }
-            if (cartiGen.empty()) {
-                std::cout<<"Nu exista carti pentru genul "<<genCautat<<std::endl;
-            }else {
-                std::string raspuns;
-                if (genCautat=="Fantasy") {
-                    std::cout<<"Vrei aventura intensa? (da/nu) ";
-                    std::cin>>raspuns;
-                }
-                else if (genCautat=="Thriller") {
-                    std::cout<<"Vrei suspans ridicat?(da/nu): ";
-                    std::cin>>raspuns;
-                }
-                else if (genCautat=="Romance") {
-                    std::cout<< "Preferi o tema pozitiva? (da/nu): ";
-                    std::cin>>raspuns;
-                }
-                else if (genCautat=="ScienceFiction") {
-                    std::cout<< "Vrei complexitate mare? (da/nu): ";
-                    std::cin>>raspuns;
+                std::vector<Carte*> cartiGen;
+                for (auto c:b.getCarti()) {
+                    if (c->getgen()==genCautat)
+                        cartiGen.push_back(c);
                 }
 
+                if (cartiGen.empty()) {
+                    std::cout<<"Nu exista carti pentru genul "<<genCautat<<std::endl;
+                }else {
+                    std::string raspuns;
+                    if (genCautat=="Fantasy") {
+                        std::cout<<"Vrei aventura intensa? (da/nu) ";
+                        std::cin>>raspuns;
+                    }
+                    else if (genCautat=="Thriller") {
+                        std::cout<<"Vrei suspans ridicat?(da/nu): ";
+                        std::cin>>raspuns;
+                    }
+                    else if (genCautat=="Romance") {
+                        std::cout<< "Preferi o tema pozitiva? (da/nu): ";
+                        std::cin>>raspuns;
+                    }
+                    else if (genCautat=="ScienceFiction") {
+                        std::cout<< "Vrei complexitate mare? (da/nu): ";
+                        std::cin>>raspuns;
+                    }
 
-                if (raspuns=="da")
-                    std::cout<<"recomandare: "<<*cartiGen[0]<<std::endl;
-                else {
-                    if (cartiGen.size()>1)
-                        std::cout<<"recomandare: "<<*cartiGen[1]<<std::endl;
-                    else
+
+                    if (raspuns=="da")
                         std::cout<<"recomandare: "<<*cartiGen[0]<<std::endl;
+                    else {
+                        if (cartiGen.size()>1)
+                            std::cout<<"recomandare: "<<*cartiGen[1]<<std::endl;
+                        else
+                            std::cout<<"recomandare: "<<*cartiGen[0]<<std::endl;
+                    }
                 }
-            }
-            Cititor tempCititor(genCautat,5,5);
-            Carte* recAutomata=b.recomandaCarte(tempCititor);
-            if (recAutomata)
-                std::cout<<"(Sistemul automat sugereaza si: "<<recAutomata->getgen()<<" - "<<")" <<std::endl;
 
+            }catch (const std::exception& e) {
+                std::cout<<"a aparut o eroare: "<<e.what()<<std::endl;
+            }
         }
         else if (optiune==3) {
             b.afiseazaStatistici();

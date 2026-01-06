@@ -22,7 +22,11 @@ Thriller::~Thriller() {}
 
 
 void Thriller::Afisare(std::ostream& out) const {
-    out<<"Thriller |"<<titlu<<" - "<<autor<<" ("<<anAparitie<<") "<<"nivel suspans: "<<nivelSuspans<<", rezolvare Mister: "<<rezolvareMister;
+    out<<"Thriller |"<<titlu<<" - "<<autor<<" ("<<anAparitie<<") "<<"nivel suspans: "<<nivelSuspans<<",Rezolvare Mister: ";
+    if (rezolvareMister)
+        out<<"da";
+    else
+        out<<"nu";
 }
 bool Thriller::eSuspansRidicat(int prag) const {
     int scor=nivelSuspans;

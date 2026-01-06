@@ -2,7 +2,7 @@
 #include<iostream>
 #include "Cititor.h"
 #include "CititorExceptie.h"
-Cititor::Cititor(const std::string& gen, int suspans, int impact):preferinteGen(gen) {
+Cititor::Cititor(const std::string& gen, int suspans, int impact):preferinteGen(gen), suspansDorit(suspans), impactEmotionalDorit(impact) {
     if (gen.empty())
         throw CititorExceptie("Gen preferat invalid");
     if (suspans<0 || impact<0) throw CititorExceptie("Valori negative pentru suspans si impact");
@@ -17,6 +17,6 @@ std::istream& operator>>(std::istream& in,Cititor& c) {
     return in;
 }
 std::ostream& operator<<(std::ostream& out, const Cititor& c) {
-    out<<"Cititorul prefera: "<<c.preferinteGen<<"(Suspans: "<<c.suspansDorit<<", Impact: "<<")";
+    out<<"Cititorul prefera: "<<c.preferinteGen<<"(Suspans: "<<c.suspansDorit<<", Impact: "<<c.impactEmotionalDorit<<")";
     return out;
 }
