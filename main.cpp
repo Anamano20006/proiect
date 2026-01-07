@@ -98,10 +98,9 @@ int main() {
         std::cout<<"0.Iesire"<<std::endl;
         std::cout<<"Alege(0-4): "<<std::endl;
         if (!(std::cin >>optiune)) {
-            std::cin.clear();
-            std::cin.ignore(1000, '\n');
             std::cout<<"Optiune invalida.Introdu un nr intre 0 si 4"<<std::endl;
             std::cin>>optiune;
+            break;
         }
         if (optiune==1) {
             b.afiseazaCarte(std::cout);
@@ -174,7 +173,7 @@ int main() {
 
     std::cout<<"Genul cel mai reprezentat: "<<StatisticiBiblioteca::getInstance().genCelMaiReprezentat()<<std::endl;
 
-    if (true) {
+    /*if (true) {
         try {
             Cititor c("", -1,5);
         } catch (const CititorExceptie& e) {
@@ -231,6 +230,6 @@ int main() {
         delete r1;
 
 
-    }
+    }*/
     return 0;
 }
