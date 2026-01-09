@@ -11,5 +11,5 @@ Carte* CarteFactory::createCarte
             return new Thriller(titlu,autor,an,nivel,extraBool);
         else if (gen=="ScienceFiction")
             return new ScienceFiction(titlu,autor,an,nivel);
-        else throw BibliotecaExceptie("Gen necunoscut: " + gen);
+        else return nullptr;
     }
